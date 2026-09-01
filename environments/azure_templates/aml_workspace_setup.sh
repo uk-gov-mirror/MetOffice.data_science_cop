@@ -22,8 +22,8 @@ export PLATFORM=metoffice
 # export PLATFORM=local
 
 
-  export WORKSPACE_NAME=dscoptest1
-  export RESOURCE_GROUP=$(python get_resource_groups.py)
+export WORKSPACE_NAME=dscoptest1
+export RESOURCE_GROUP=$(python get_resource_groups.py)
 
 #===============================
 # Create workspace
@@ -58,7 +58,7 @@ export CONTAINER_URL=https://${STORAGE_ACCOUNT}.blob.core.windows.net/${CONTAINE
 
 azcopy copy "${XBT_DATA_PATH}" "${CONTAINER_URL}/xbt/xbt_1968.csv"
 azcopy copy "${CLIMATE_ZONES_DATA_PATH}" "${CONTAINER_URL}/climate_zones/climate_zones_1p0.csv"
-azcopy copy --recursive="true"  ${WEATHERBENCH_PATH}/*.nc "${CONTAINER_URL}/weatherbench/5.625deg"
+azcopy copy --recursive="true"  "${WEATHERBENCH_PATH}/*.nc" "${CONTAINER_URL}/weatherbench/5.625deg"
 
 
 export DSCOP_DATASTORE_NAME=dscopworkspacestore
@@ -94,7 +94,7 @@ az ml compute create --name dscopcitest01 --size $COMPUTE_SIZE --type ComputeIns
 #todo: specify the script to run on creation to set up the copmpute instance for the tutorial, need to create a python script to populate a compute spec yaml file which specifies a creation script, which must first be uploaded
 
 #cluster
-#az ml compute create --name dscopclustertest01 --size $COMPUTE_SIZE --min-instances 0 --max-instances 1 --type AmlCompute --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
+az ml compute create --name dscopclustertest01 --size $COMPUTE_SIZE --min-instances 0 --max-instances 1 --type AmlCompute --resource-group $RESOURCE_GROUP --workspace-name $WORKSPACE_NAME
 
 
 #=========================================
